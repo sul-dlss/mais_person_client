@@ -7,6 +7,11 @@ API client for accessing MAIS's Person endpoints.
 
 MAIS's Person API provides access to information for Stanford users.
 
+## API Documentation
+
+API docs: https://uit.stanford.edu/developers/apis/person
+API Schema: https://uit.stanford.edu/service/registry/person-data
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
