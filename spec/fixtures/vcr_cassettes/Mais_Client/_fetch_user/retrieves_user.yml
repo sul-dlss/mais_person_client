@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://registry-uat.stanford.edu/doc/person/petucket
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: '200'
+    headers:
+      Date:
+      - Tue, 09 Sep 2025 22:09:45 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/xml
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?><Person>REDACTED</Person><!--datastore='jdbc:oracle:thin:@maisdbuat1c.awspriv.stanford.edu:1533:RGUAT1' view='standard' version='1.2' timestamp='2025.09.09 03:09:45 PDT'-->
+  recorded_at: Tue, 09 Sep 2025 22:09:45 GMT
+recorded_with: VCR 6.3.1
