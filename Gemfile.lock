@@ -5,6 +5,7 @@ PATH
       activesupport (>= 4.2)
       faraday
       faraday-retry
+      nokogiri
       ostruct
       zeitwerk
 
@@ -60,6 +61,22 @@ GEM
     minitest (5.25.5)
     net-http (0.6.0)
       uri
+    nokogiri (1.18.9-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-linux-musl)
+      racc (~> 1.4)
     ostruct (0.6.3)
     parallel (1.27.0)
     parser (3.3.9.0)
@@ -76,7 +93,7 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
-    rexml (3.4.3)
+    rexml (3.4.4)
     rspec (3.13.1)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -144,12 +161,14 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
-  arm64-darwin-23
-  x86_64-darwin-19
-  x86_64-darwin-20
-  x86_64-darwin-21
-  x86_64-darwin-22
-  x86_64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   byebug
@@ -169,4 +188,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.6.8
+   2.7.2

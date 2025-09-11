@@ -445,3 +445,28 @@ Performance/ZipWithoutBlock: # new in 1.24
   Enabled: true
 RSpec/IncludeExamples: # new in 3.6
   Enabled: true
+
+# Custom configurations for complex model classes
+Metrics/ClassLength:
+  Exclude:
+    - 'lib/mais_person_client/person.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/mais_person_client/person.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/mais_person_client/person.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/mais_person_client/person.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'lib/mais_person_client/person.rb'
+
+# Allow longer examples in spec files for comprehensive testing
+RSpec/ExampleLength:
+  Max: 15

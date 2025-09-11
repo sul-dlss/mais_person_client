@@ -6,6 +6,7 @@ require 'faraday'
 require 'faraday/retry'
 require 'openssl'
 require 'ostruct'
+require 'nokogiri'
 require 'singleton'
 require 'zeitwerk'
 
