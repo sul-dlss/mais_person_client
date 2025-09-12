@@ -76,6 +76,7 @@ RSpec.describe MaisPersonClient::Person do
     describe '#display_name' do
       it 'returns the display name' do
         name = person.display_name
+        expect(name.full_name).to eq('Donald Duck')
         expect(name.type).to eq('display')
         expect(name.visibility).to eq('world')
       end

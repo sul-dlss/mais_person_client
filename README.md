@@ -37,9 +37,14 @@ client = MaisPersonClient.configure(
   base_url: Settings.mais_person.base_url,
   user_agent: 'some-user-agent-string-to-send-in-requests' # defaults to 'stanford-library'
 )
-client.fetch_user('nataliex') # get a single user by sunet
-client.fetch_users # return all users
+result = client.fetch_user('nataliex') # get a single user by sunet, returns an XML doc as a string
+
+person = MaisPersonClient::Person.new(result) # returns a class with the XML parsed
+person.sunetid
+=> 'donaldduck'
 ```
+
+
 
 You can also invoke methods directly on the client class, which is useful in a Rails application environment where you might initialize the client in an
 initializer and then invoke client methods in many other contexts where you want to be sure configuration has already occurred, e.g.:
