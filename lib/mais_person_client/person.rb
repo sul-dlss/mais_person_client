@@ -77,6 +77,19 @@ class MaisPersonClient
       names.find { |name| name.type == 'display' }
     end
 
+    # Name component helpers
+    def first_name
+      registered_name&.first_name
+    end
+
+    def middle_name
+      registered_name&.middle
+    end
+
+    def last_name
+      registered_name&.last
+    end
+
     # Titles (multiple possible)
     def titles
       xml.xpath('//title').map do |title_node|

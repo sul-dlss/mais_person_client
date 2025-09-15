@@ -81,6 +81,24 @@ RSpec.describe MaisPersonClient::Person do
         expect(name.visibility).to eq('world')
       end
     end
+
+    describe '#first_name' do
+      it 'returns the first name from registered name' do
+        expect(person.first_name).to eq('Donald')
+      end
+    end
+
+    describe '#middle_name' do
+      it 'returns the middle name from registered name' do
+        expect(person.middle_name).to eq('Fauntleroy')
+      end
+    end
+
+    describe '#last_name' do
+      it 'returns the last name from registered name' do
+        expect(person.last_name).to eq('Duck')
+      end
+    end
   end
 
   describe 'titles' do
