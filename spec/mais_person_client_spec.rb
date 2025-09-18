@@ -19,6 +19,7 @@ RSpec.describe MaisPersonClient do
   describe '#fetch_user' do
     let(:user_by_sunetid) { subject.fetch_user('petucket') }
     let(:bad_user_by_sunetid) { subject.fetch_user('totally-bogus') }
+    let(:client) { subject.instance }
 
     it 'retrieves a single user by sunetid' do
       VCR.use_cassette('Mais_Client/_fetch_user/retrieves user') do
@@ -34,6 +35,23 @@ RSpec.describe MaisPersonClient do
           expect(bad_user_by_sunetid).to be_nil
         end
       end
+    end
+
+    it 'sends tags as query params when provided' do
+      conn_spy = instance_spy(Faraday::Connection)
+      response_double = instance_spy(Faraday::Response, success?: true, status: 200, body: '<Person/>')
+
+      # Stub the client's connection and the get call, then assert it was called
+      allow(client).to receive(:conn).and_return(conn_spy)
+      allow(conn_spy).to receive(:get).and_return(response_double)
+
+      # Call the method with tags (string or array should both work)
+      client.fetch_user('petucket', tags: %w[name title])
+
+      expect(conn_spy).to have_received(:get).with(
+        '/doc/person/petucket',
+        hash_including(tags: 'name,title')
+      )
     end
   end
 end

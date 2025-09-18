@@ -17,6 +17,25 @@ Zeitwerk::Loader.for_gem.setup
 class MaisPersonClient
   include Singleton
 
+  # Allowed tag values that can be requested from the API
+  ALLOWED_TAGS = %w[
+    name
+    title
+    biodemo
+    address
+    telephone
+    email
+    url
+    location
+    place
+    affiliation
+    identifier
+    privgroup
+    profile
+    emergency
+    visibility
+  ].freeze
+
   class << self
     # @param api_key [String] the api_key provided by MAIS
     # @param api_cert [String] the api_cert provided by MAIS
@@ -43,8 +62,13 @@ class MaisPersonClient
   # Fetch a user details
   # @param [string] sunet to fetch
   # @return [<Person>, nil] user or nil if not found
-  def fetch_user(sunetid)
-    get_response("/doc/person/#{sunetid}", allow404: true)
+  # Fetch user details. Optionally accepts `tags:` which may be a String (comma
+  # separated) or an Array of tag names. Only tags listed in `ALLOWED_TAGS` are
+  # permitted; otherwise an ArgumentError is raised.
+  def fetch_user(sunetid, tags: nil)
+    params = build_tag_params(tags)
+
+    get_response("/doc/person/#{sunetid}", allow404: true, params: params)
   end
 
   # Fetch a user's affiliations
@@ -56,8 +80,23 @@ class MaisPersonClient
 
   private
 
-  def get_response(path, allow404: false)
-    response = conn.get(path)
+  def build_tag_params(tags)
+    return nil unless tags
+
+    tags_array = if tags.is_a?(String)
+                   tags.split(',').map(&:strip)
+                 else
+                   Array(tags).map(&:to_s)
+                 end
+
+    invalid = tags_array - ALLOWED_TAGS
+    raise ArgumentError, "Invalid tag(s): #{invalid.join(', ')}" if invalid.any?
+
+    { tags: tags_array.join(',') }
+  end
+
+  def get_response(path, allow404: false, params: nil)
+    response = conn.get(path, params)
 
     return if allow404 && response.status == 404
 
