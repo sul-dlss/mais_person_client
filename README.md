@@ -42,9 +42,16 @@ result = client.fetch_user('nataliex') # get a single user by sunet, returns an 
 person = MaisPersonClient::Person.new(result) # returns a class with the XML parsed
 person.sunetid
 => 'donaldduck'
+
+result = client.fetch_affiliations('nataliex') # get a single users organization affiliations, returns an XML doc as a string
+affiliations = MaisPersonClient::Affiliations.new(result) # returns a class with the XML parsed
+# Get all affiliations
+affiliations_list = affiliations.affiliations
+active_faculty = affiliations.faculty_affiliations
+primary = affiliations.primary_affiliation
+primary_org_id = affiliations.primary_org_id
+all_org_ids = affiliations.org_ids
 ```
-
-
 
 You can also invoke methods directly on the client class, which is useful in a Rails application environment where you might initialize the client in an
 initializer and then invoke client methods in many other contexts where you want to be sure configuration has already occurred, e.g.:

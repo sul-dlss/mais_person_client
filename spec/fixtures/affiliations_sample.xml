@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Person SYSTEM "https://registry.stanford.edu/xml/person/1.2/Person.dtd">
+<Person card="123456789012345" listing="world" name="Gadget, Inspector"
+    regid="FAKE-REGID-ABC123" relationship="faculty" source="registry"
+    sunetid="igadget" univid="00000001"><affiliation affnum="1" effective="2024-09-01"
+        organization="stanford" type="faculty" visibility="world">Faculty<department affnum="1">
+    Crime Detection<organization adminid="CRIME" level2orgid="DETECT"
+                level2orgname="School of Investigation" regid="FAKE-ORG-DETECT-001">Crime Detection
+    Operations</organization></department><description affnum="1">Chief Inspector</description><affdata
+            affnum="1" type="academic_council">Member of Detective Council</affdata><affdata
+            affnum="1" code="007" type="job">Chief Inspector</affdata><affdata affnum="1" type="stdhrs">
+    42</affdata><affdata affnum="1" type="refid">1</affdata><affdata affnum="1" type="jobtitle">
+    Chief Inspector</affdata><place affnum="1" type="office">
+            <address affnum="1" type="office" visibility="world">Department of Crime Detection,
+    Mystery Building, 123 Sherlock Street, Room 221B, Gadget Lab, MC: 0007, Metro City, California 90210-1234<line>Department
+    of Crime Detection</line><line>Mystery Building, 123 Sherlock Street, Room 221B</line><line>Gadget Lab,
+    MC: 0007</line><city>Metro City</city><state code="CA">California</state><postalcode>90210-1234</postalcode><country
+                    alpha2="US" alpha3="USA" numeric="840">United States</country></address>
+            <telephone affnum="1" type="office" visibility="world">(555) 123-0007<icc>1</icc><area>
+    555</area><number>123-0007</number></telephone>
+            <telephone affnum="1" type="office" visibility="world">(555) 123-0008<icc>1</icc><area>
+    555</area><number>123-0008</number></telephone>
+            <telephone affnum="1" type="officefax" visibility="world">(555) 123-0009<icc>1</icc><area>
+    555</area><number>123-0009</number></telephone>
+        </place></affiliation><affiliation
+        affnum="2" effective="1985-06-17" organization="stanford" type="student:nonactive"
+        visibility="none">Former student<department affnum="2">School of Gadgetry<organization
+                acadid="GADGETS" adminid="TECH" level2orgid="TECH"
+                level2orgname="School of Gadgetry" regid="FAKE-ORG-GADGET-002">School
+    of Gadgetry</organization></department><description affnum="2">Graduate, Gadgetry</description><affdata
+            affnum="2" type="admit_term">8501</affdata><affdata affnum="2" code="GAD" type="career">
+    Gadgetry</affdata><affdata affnum="2" type="declare_date">01/15/1980</affdata><affdata
+            affnum="2" code="PHD" type="degree">PHD</affdata><affdata affnum="2" type="dual_career" /><affdata
+            affnum="2" type="expected_graduation_term">8506</affdata><affdata affnum="2"
+            type="refid">42</affdata><affdata affnum="2" code="GAD-PHD" type="plan">Gadgetry (PhD)</affdata><affdata
+            affnum="2" code="GADGETS" type="primary_department">School of Gadgetry</affdata><affdata
+            affnum="2" code="GADGETS" type="primary_school">School of Gadgetry</affdata><affdata
+            affnum="2" code="GADPH" type="program">Gadgetry PhD</affdata><affdata affnum="2"
+            code="CM" type="program_status">completed program</affdata><affdata affnum="2"
+            type="joint">N</affdata></affiliation><affiliation affnum="3" effective="1980-06-18"
+        organization="stanford" type="student:nonactive" visibility="none">Former student<department
+            affnum="3">Detective Sciences<organization acadid="DETECT"
+                regid="FAKE-ORG-DETECTIVE-003">Detective Sciences</organization></department><description
+            affnum="3">Graduate</description><affdata affnum="3" type="admit_term">8001</affdata><affdata
+            affnum="3" code="DT" type="career">Detective</affdata><affdata affnum="3"
+            type="declare_date">09/01/1975</affdata><affdata affnum="3" code="MS" type="degree">MS</affdata><affdata
+            affnum="3" type="dual_career" /><affdata affnum="3" type="expected_graduation_term">8006</affdata><affdata
+            affnum="3" type="refid">42</affdata><affdata affnum="3" code="DETECT-MS" type="plan">Detective
+    Sciences (MS)</affdata><affdata affnum="3" code="DETECT" type="primary_department">Detective
+    Sciences</affdata><affdata affnum="3" code="GADGETS" type="primary_school">School
+    of Gadgetry</affdata><affdata affnum="3" code="DETMS" type="program">Detective Sciences</affdata><affdata
+            affnum="3" code="CM" type="program_status">completed program</affdata><affdata
+            affnum="3" type="joint">N</affdata></affiliation><affiliation affnum="4"
+        effective="1990-01-16" organization="stanford" type="faculty:nonactive" visibility="none">Former
+    faculty<department affnum="4">Crime Prevention and Public Safety<organization
+                acadid="CRIMEPREV" adminid="SAFE" level2orgid="DETECT"
+                level2orgname="School of Investigation" regid="FAKE-ORG-SAFETY-004">Crime Prevention
+    and Public Safety</organization></department><description affnum="4">Associate Inspector</description><affdata
+            affnum="4" code="006" type="job">Associate Inspector</affdata><affdata affnum="4"
+            type="stdhrs">20</affdata><affdata affnum="4" type="refid">2</affdata><affdata affnum="4"
+            type="jobtitle">Associate Inspector</affdata></affiliation></Person><!--datastore='jdbc:oracle:thin:@testdb.example.com:1521:TEST'
+view='standard' version='1.2' timestamp='2024.09.18 10:30:15 PDT'-->

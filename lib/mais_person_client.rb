@@ -35,7 +35,7 @@ class MaisPersonClient
       self
     end
 
-    delegate :config, :fetch_user, to: :instance
+    delegate :config, :fetch_user, :fetch_user_affiliations, to: :instance
   end
 
   attr_accessor :config
@@ -45,6 +45,13 @@ class MaisPersonClient
   # @return [<Person>, nil] user or nil if not found
   def fetch_user(sunetid)
     get_response("/doc/person/#{sunetid}", allow404: true)
+  end
+
+  # Fetch a user's affiliations
+  # @param [string] sunet to fetch
+  # @return [Array<Affiliation>, nil] affiliations or nil if not found
+  def fetch_user_affiliations(sunetid)
+    get_response("/doc/person/#{sunetid}/affiliation", allow404: true)
   end
 
   private

@@ -450,22 +450,27 @@ RSpec/IncludeExamples: # new in 3.6
 Metrics/ClassLength:
   Exclude:
     - 'lib/mais_person_client/person.rb'
+    - 'lib/mais_person_client/affiliations.rb'
 
 Metrics/AbcSize:
   Exclude:
     - 'lib/mais_person_client/person.rb'
+    - 'lib/mais_person_client/affiliations.rb'
 
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'lib/mais_person_client/person.rb'
+    - 'lib/mais_person_client/affiliations.rb'
 
 Metrics/MethodLength:
   Exclude:
     - 'lib/mais_person_client/person.rb'
+    - 'lib/mais_person_client/affiliations.rb'
 
 Metrics/PerceivedComplexity:
   Exclude:
     - 'lib/mais_person_client/person.rb'
+    - 'lib/mais_person_client/affiliations.rb'
 
 # Allow longer examples in spec files for comprehensive testing
 RSpec/ExampleLength:
