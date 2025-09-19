@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://registry-uat.stanford.edu/doc/person/petucket/affiliation
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: '200'
+    headers:
+      Date:
+      - Fri, 19 Sep 2025 18:11:22 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/xml
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE Person SYSTEM "https://registry-uat.stanford.edu/xml/person/1.2/Person.dtd">
+        <Person card="123456" listing="world" name="REDACTED" regid="242475a33ccf4867a9746d80f5480d8e" relationship="staff" source="registry" sunetid="test" univid="09675257"><affiliation affnum="1" effective="2024-09-01" organization="stanford" type="staff" visibility="world">Staff<department affnum="1">Digital Library Systems and Services<organization adminid="JFBK" level2orgid="JAAA" level2orgname="Stanford University Libraries" regid="xxxxx">Digital Library Systems and Services</organization></department><description affnum="1">Digital Library Software Engineer &amp; Specialist (Infrastructure)</description><affdata affnum="1" type="academic_council">NON-MEMBER</affdata><affdata affnum="1" code="4823" type="job">Software Dvlpr 3</affdata><affdata affnum="1" type="stdhrs">40</affdata><affdata affnum="1" type="refid">0</affdata><affdata affnum="1" type="jobtitle">Digital Library Software Engineer &amp; Specialist (Infrastructure)</affdata><place affnum="1" type="office"><address affnum="1" type="office" visibility="world">Address</line><city>STANFORD</city><state code="CA">California</state><postalcode>94305</postalcode><country alpha2="US" alpha3="USA" numeric="840">United States</country></address><qbfr affnum="1" type="office">1234</qbfr><telephone affnum="1" type="office" visibility="stanford">(650) 555-5555<icc>1</icc><area>650</area><number>555-5555</number></telephone></place></affiliation></Person><!--datastore='jdbc:oracle:thin:@maisdbuat1c.awspriv.stanford.edu:1533:RGUAT1' view='standard' version='1.2' timestamp='2025.09.19 11:11:22 PDT'-->
+  recorded_at: Fri, 19 Sep 2025 18:11:22 GMT
+recorded_with: VCR 6.3.1

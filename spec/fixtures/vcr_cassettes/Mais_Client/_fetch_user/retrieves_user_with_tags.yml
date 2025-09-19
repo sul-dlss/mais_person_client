@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://registry-uat.stanford.edu/doc/person/petucket?tags=name,title
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - stanford-library
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: '200'
+    headers:
+      Date:
+      - Fri, 19 Sep 2025 19:43:16 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=2592000; includeSubDomains
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      Connection:
+      - close
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/xml
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE Person SYSTEM "https://registry-uat.stanford.edu/xml/person/1.2/Person.dtd">
+        <Person card="12345" listing="world" name="Test, test" regid="567abc" relationship="staff" source="registry" sunetid="sunetid" univid="56789"><name type="registered" visibility="none">Test, Test<first nval="test">Test</first><middle nval="t">T</middle><last nval="test">Test</last></name><name type="display" visibility="world">Test, test<first nval="test">test</first><middle nval="t">t</middle><last nval="test">test</last></name><title type="job" visibility="world">Digital Library Software Engineer &amp; Specialist (Infrastructure)</title></Person><!--datastore='jdbc:oracle:thin:@maisdbuat1c.awspriv.stanford.edu:1533:RGUAT1' view='standard' version='1.2' timestamp='2025.09.19 11:24:52 PDT'-->
+  recorded_at: Fri, 19 Sep 2025 19:43:16 GMT
+recorded_with: VCR 6.3.1

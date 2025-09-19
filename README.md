@@ -84,7 +84,7 @@ VCR gem is used to record the results of the API calls for the tests.  If you ne
 
 To record new cassettes:
 1. Join VPN.
-2. Temporarily adjust the configuration (api_key, api_cert for the MaIS UAT URL) at the top of `spec/mais_person_client_spec.rb` so it matches the real MaIS UAT environment.
+2. Temporarily adjust the configuration (fake_api_key, fake_api_cert for the MaIS UAT URL) at the top of `spec/spec_helper.rb` so it matches the real MaIS UAT environment.
 3. Add your new spec with a new cassette name (or delete a previous cassette to re-create it).
 4. Run just that new spec (important: else previous specs may use cassettes that have redacted credentials, causing your new spec to fail).
 5. You should get a new cassette with the name you specified in the spec.

@@ -19,6 +19,7 @@ RSpec.describe MaisPersonClient do
   describe '#fetch_user' do
     let(:user_by_sunetid) { subject.fetch_user('petucket') }
     let(:bad_user_by_sunetid) { subject.fetch_user('totally-bogus') }
+    let(:user_by_sunetid_with_tags) { subject.fetch_user('petucket', tags: %w[name title]) }
     let(:client) { subject.instance }
 
     it 'retrieves a single user by sunetid' do
@@ -37,21 +38,40 @@ RSpec.describe MaisPersonClient do
       end
     end
 
-    it 'sends tags as query params when provided' do
-      conn_spy = instance_spy(Faraday::Connection)
-      response_double = instance_spy(Faraday::Response, success?: true, status: 200, body: '<Person/>')
+    it 'retrieves a single user by sunetid with tags' do
+      VCR.use_cassette('Mais_Client/_fetch_user/retrieves user with tags') do
+        expect(user_by_sunetid_with_tags).to be_a(String)
+        expect(user_by_sunetid_with_tags).to match(/<\?xml/)
+        expect(user_by_sunetid_with_tags).to include('<Person card="12345"')
+        expect(user_by_sunetid_with_tags).to include('<Person card="12345"')
+        expect(user_by_sunetid_with_tags).to include('<title type="job"')
+        # assert that WebMock saw a GET with the tags query parameter
+        expect(WebMock).to have_requested(:get, %r{https://registry-uat\.stanford\.edu/doc/person/petucket})
+          .with(query: hash_including('tags' => 'name,title'))
+      end
+    end
+  end
 
-      # Stub the client's connection and the get call, then assert it was called
-      allow(client).to receive(:conn).and_return(conn_spy)
-      allow(conn_spy).to receive(:get).and_return(response_double)
+  describe '#fetch_user_affiliations' do
+    let(:affiliations_by_sunetid) { subject.fetch_user_affiliations('petucket') }
+    let(:bad_affiliations_by_sunetid) { subject.fetch_user_affiliations('totally-bogus') }
+    let(:client) { subject.instance }
 
-      # Call the method with tags (string or array should both work)
-      client.fetch_user('petucket', tags: %w[name title])
+    it 'retrieves affiliations for a user by sunetid' do
+      VCR.use_cassette('Mais_Client/_fetch_user_affiliations/retrieves affiliations') do
+        expect(affiliations_by_sunetid).to be_a(String)
+        expect(affiliations_by_sunetid).to match(/<\?xml/)
+        expect(affiliations_by_sunetid).to include('<Person card="123456"')
+        expect(affiliations_by_sunetid).to include('<organization adminid="JFBK" level2orgid="JAAA"')
+      end
+    end
 
-      expect(conn_spy).to have_received(:get).with(
-        '/doc/person/petucket',
-        hash_including(tags: 'name,title')
-      )
+    context 'when a sunetid user is not found' do
+      it 'returns nil' do
+        VCR.use_cassette('Mais_Client/_fetch_user_affiliations/raises') do
+          expect(bad_affiliations_by_sunetid).to be_nil
+        end
+      end
     end
   end
 end
