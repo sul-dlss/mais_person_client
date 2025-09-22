@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mais_person_client (0.0.5)
+    mais_person_client (0.0.6)
       activesupport (>= 4.2)
       faraday
       faraday-retry
