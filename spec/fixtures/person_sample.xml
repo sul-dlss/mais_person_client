@@ -81,12 +81,12 @@
       <number>123-0003</number>
     </telephone>
   </place>
-  <affiliation affnum="1" effective="1934-06-09" organization="tooncorp" type="adventurer" visibility="world">Adventurer
+  <affiliation affnum="1" effective="1934-06-09" organization="tooncorp" type="staff" visibility="world">Adventurer
     <department affnum="1">Duckburg Adventurers Club
       <organization adminid="DUCK" level2orgid="TOON" level2orgname="ToonTown International" regid="FAKE-ORG-0001">Duckburg Adventurers Club</organization>
     </department>
     <description affnum="1">Chief Quack Officer</description>
-    <affdata affnum="1" type="club">MEMBER</affdata>
+    <affdata affnum="1" type="academic_council">MEMBER</affdata>
     <affdata affnum="1" code="313" type="job">Treasure Hunter</affdata>
     <affdata affnum="1" type="stdhrs">24</affdata>
     <place affnum="1" type="office">

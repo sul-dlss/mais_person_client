@@ -311,7 +311,7 @@ RSpec.describe MaisPersonClient::Person do
       expect(affiliation.affnum).to eq('1')
       expect(affiliation.effective).to eq('1934-06-09')
       expect(affiliation.organization).to eq('tooncorp')
-      expect(affiliation.type).to eq('adventurer')
+      expect(affiliation.type).to eq('staff')
       expect(affiliation.visibility).to eq('world')
 
       # Test department
@@ -328,6 +328,68 @@ RSpec.describe MaisPersonClient::Person do
       # Test places within affiliation
       expect(affiliation.place).to be_an(Array)
       expect(affiliation.place.first).to be_a(MaisPersonClient::Person::Place)
+    end
+
+    describe '#primary_org_code' do
+      it 'returns the department adminid for affnum=1' do
+        expect(person.primary_org_code).to eq('DUCK')
+      end
+
+      it 'returns nil when affiliation with affnum=1 is missing' do
+        xml = <<~XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Person>
+            <affiliation affnum="2">
+              <department affnum="2">
+                <organization adminid="NOMAIN">Dept</organization>
+              </department>
+            </affiliation>
+          </Person>
+        XML
+
+        p = described_class.new(xml)
+        expect(p.primary_org_code).to be_nil
+      end
+    end
+
+    describe '#primary_role' do
+      it 'returns the affiliation type for affnum=1' do
+        expect(person.primary_role).to eq('staff')
+      end
+
+      it 'returns nil when affiliation with affnum=1 is missing' do
+        xml = <<~XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Person>
+            <affiliation affnum="2" type="faculty"/>
+          </Person>
+        XML
+
+        p = described_class.new(xml)
+        expect(p.primary_role).to be_nil
+      end
+    end
+
+    describe '#academic_council?' do
+      it 'returns true when not marked NON-MEMBER in affdata' do
+        # The fixture has an affdata type 'club' and does not mark academic_council as NON-MEMBER
+        expect(person.academic_council?).to be true
+      end
+
+      it 'returns false when an affiliation has affdata academic_council NON-MEMBER' do
+        # Build a minimal person XML with an affiliation that includes affdata type academic_council = NON-MEMBER
+        xml = <<~XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Person>
+            <affiliation affnum="1">
+              <affdata affnum="1" type="academic_council">NON-MEMBER</affdata>
+            </affiliation>
+          </Person>
+        XML
+
+        p = described_class.new(xml)
+        expect(p.academic_council?).to be false
+      end
     end
   end
 

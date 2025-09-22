@@ -178,6 +178,30 @@ class MaisPersonClient
       xml.xpath('//affiliation').map { |aff_node| build_affiliation(aff_node) }
     end
 
+    # returns the primary role/type for the person (from affiliation with affnum 1)
+    def primary_role
+      affiliations.find { |aff| aff.affnum == '1' }&.type
+    end
+
+    # returns the org_id for the primary affiliation (affnum == '1')
+    def primary_org_code
+      # Find the affiliation with affnum == '1' and return the department's organization adminid
+      aff = affiliations.find { |a| a.affnum == '1' }
+      return nil unless aff
+
+      # department may be nil; department.adminid holds the org code
+      aff.department&.adminid
+    end
+
+    # indicates if a person is a member of the academic council
+    def academic_council?
+      affiliations.none? do |affiliation|
+        affiliation.affdata.any? do |affdata|
+          affdata.type == 'academic_council' && affdata.value&.downcase == 'non-member'
+        end
+      end
+    end
+
     # Identifiers (multiple)
     def identifiers
       xml.xpath('//identifier').map do |id_node|

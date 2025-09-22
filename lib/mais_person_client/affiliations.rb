@@ -77,10 +77,10 @@ class MaisPersonClient
     end
 
     def org_ids
-      xml.xpath('//organization/@adminid').map(&:value)
+      xml.xpath('//organization/@adminid').map(&:value).uniq.compact
     end
 
-    def primary_org_id
+    def primary_org_code
       org_node = xml.at_xpath("//affiliation[@affnum='1']//organization")
       org_node ? org_node['adminid'] : nil
     end

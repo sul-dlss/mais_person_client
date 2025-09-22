@@ -204,7 +204,7 @@ RSpec.describe MaisPersonClient::Affiliations do
 
     describe '#primary_org_id' do
       it 'returns the adminid for affiliation with affnum 1' do
-        expect(affiliations.primary_org_id).to eq('CRIME')
+        expect(affiliations.primary_org_code).to eq('CRIME')
       end
     end
   end
@@ -256,7 +256,7 @@ RSpec.describe MaisPersonClient::Affiliations do
       end
     end
 
-    context 'when primary_org_id and affiliation 1 is missing' do
+    context 'when primary_org_code and affiliation 1 is missing' do
       let(:no_aff1_xml) do
         <<~XML
           <?xml version="1.0" encoding="UTF-8"?>
@@ -269,7 +269,7 @@ RSpec.describe MaisPersonClient::Affiliations do
       let(:no_aff1_affiliations) { described_class.new(no_aff1_xml) }
 
       it 'returns nil for primary_org_id when affnum=1 is absent' do
-        expect(no_aff1_affiliations.primary_org_id).to be_nil
+        expect(no_aff1_affiliations.primary_org_code).to be_nil
       end
     end
   end
