@@ -530,6 +530,10 @@ RSpec.describe MaisPersonClient::Person do
         expect(minimal_person.emails).to be_empty
         expect(minimal_person.emergency_contacts).to be_empty
       end
+
+      it 'returns false for academic_council? when there are no affiliations' do
+        expect(minimal_person.academic_council?).to be false
+      end
     end
 
     context 'with malformed XML' do

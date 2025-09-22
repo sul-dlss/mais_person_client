@@ -195,6 +195,9 @@ class MaisPersonClient
 
     # indicates if a person is a member of the academic council
     def academic_council?
+      # If there are no affiliations, the person is not a member of the academic council
+      return false if affiliations.empty?
+
       affiliations.none? do |affiliation|
         affiliation.affdata.any? do |affdata|
           affdata.type == 'academic_council' && affdata.value&.downcase == 'non-member'
