@@ -371,9 +371,9 @@ RSpec.describe MaisPersonClient::Person do
     end
 
     describe '#academic_council?' do
-      it 'returns true when not marked NON-MEMBER in affdata' do
+      it 'returns false when not marked "Member of Academic Council" in affdata' do
         # The fixture has an affdata type 'club' and does not mark academic_council as NON-MEMBER
-        expect(person.academic_council?).to be true
+        expect(person.academic_council?).to be false
       end
 
       it 'returns false when an affiliation has affdata academic_council NON-MEMBER' do
@@ -389,6 +389,21 @@ RSpec.describe MaisPersonClient::Person do
 
         p = described_class.new(xml)
         expect(p.academic_council?).to be false
+      end
+
+      it 'returns true when an affiliation has affdata academic_council "Member of Academic Council"' do
+        # Build a minimal person XML with an affiliation that includes affdata type academic_council = NON-MEMBER
+        xml = <<~XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Person>
+            <affiliation affnum="1">
+              <affdata affnum="1" type="academic_council">Member of Academic Council</affdata>
+            </affiliation>
+          </Person>
+        XML
+
+        p = described_class.new(xml)
+        expect(p.academic_council?).to be true
       end
     end
   end
