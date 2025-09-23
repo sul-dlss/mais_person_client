@@ -193,7 +193,7 @@ class MaisPersonClient
       aff.department&.adminid
     end
 
-    # returns the org_id for the primary affiliation (affnum == '1')
+    # returns the effective_date for the primary affiliation (affnum == '1')
     def primary_effective_date
       # Find the affiliation with affnum == '1' and return the effective date
       aff = affiliations.find { |a| a.affnum == '1' }
