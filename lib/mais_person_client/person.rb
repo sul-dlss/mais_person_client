@@ -193,6 +193,16 @@ class MaisPersonClient
       aff.department&.adminid
     end
 
+    # returns the effective_date for the primary affiliation (affnum == '1')
+    def primary_effective_date
+      # Find the affiliation with affnum == '1' and return the effective date
+      aff = affiliations.find { |a| a.affnum == '1' }
+      return nil unless aff
+
+      # effective date
+      aff.effective
+    end
+
     # indicates if a person is a member of the academic council
     def academic_council?
       # If there are no affiliations, the person is not a member of the academic council

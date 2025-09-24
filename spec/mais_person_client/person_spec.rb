@@ -352,6 +352,24 @@ RSpec.describe MaisPersonClient::Person do
       end
     end
 
+    describe '#primary_effective_date' do
+      it 'returns the effective date for affiliation with affnum=1' do
+        expect(person.primary_effective_date).to eq('1934-06-09')
+      end
+
+      it 'returns nil when affiliation with affnum=1 is missing' do
+        xml = <<~XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Person>
+            <affiliation affnum="2" effective="2020-01-01" />
+          </Person>
+        XML
+
+        p = described_class.new(xml)
+        expect(p.primary_effective_date).to be_nil
+      end
+    end
+
     describe '#primary_role' do
       it 'returns the affiliation type for affnum=1' do
         expect(person.primary_role).to eq('staff')
