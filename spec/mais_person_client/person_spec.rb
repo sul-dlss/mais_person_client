@@ -43,6 +43,32 @@ RSpec.describe MaisPersonClient::Person do
     it 'parses univid attribute' do
       expect(person.univid).to eq('00000001')
     end
+
+    it 'parses stanford_end_date attribute' do
+      xml_with_date = <<~XML
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Person stanfordenddate="2024-05-10">
+          <name type="registered">Test User</name>
+        </Person>
+      XML
+      person_with_date = described_class.new(xml_with_date)
+      expect(person_with_date.stanford_end_date).to eq('2024-05-10')
+    end
+
+    it 'returns nil when stanford_end_date attribute is missing' do
+      expect(person.stanford_end_date).to be_nil
+    end
+
+    it 'returns nil when stanford_end_date attribute is blank' do
+      xml_blank = <<~XML
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Person stanfordenddate="">
+          <name type="registered">Test User</name>
+        </Person>
+      XML
+      person_blank = described_class.new(xml_blank)
+      expect(person_blank.stanford_end_date).to be_nil
+    end
   end
 
   describe 'names' do

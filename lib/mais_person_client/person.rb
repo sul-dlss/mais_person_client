@@ -64,6 +64,14 @@ class MaisPersonClient
       xml.root['univid']
     end
 
+    def stanford_end_date
+      value = xml.root['stanfordenddate']
+      return nil unless value
+
+      stripped = value.strip
+      stripped.empty? ? nil : stripped
+    end
+
     # Names (multiple possible)
     def names
       xml.xpath('//name').map { |name_node| build_person_name(name_node) }
