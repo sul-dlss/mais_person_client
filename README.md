@@ -16,7 +16,7 @@ API Schema: https://uit.stanford.edu/service/registry/person-data
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add mais_peron_client
+    $ bundle add mais_person_client
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
