@@ -12,6 +12,8 @@ MAIS's Person API provides access to information for Stanford users.
 API docs: https://uit.stanford.edu/developers/apis/person
 API Schema: https://uit.stanford.edu/service/registry/person-data
 
+Note that this client does not support the ability to get the biodemo, address, telephone, place, and emergency fields.
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
