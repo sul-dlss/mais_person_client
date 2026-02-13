@@ -20,9 +20,6 @@ class MaisPersonClient
                              :affdata, :place)
     AffData = Struct.new(:affnum, :type, :code, :value)
     Place = Struct.new(:type, :affnum, :address, :qbfr, :telephone)
-    EmergencyContact = Struct.new(:number, :primary, :sync_permanent, :visibility, :contact_name,
-                                  :contact_relationship, :contact_relationship_code, :contact_telephones,
-                                  :contact_address)
 
     attr_reader :xml
 
@@ -113,25 +110,6 @@ class MaisPersonClient
       titles.find { |title| title[:type] == 'job' }&.[](:title)
     end
 
-    # Biodemo
-    def gender
-      xml.at_xpath('//biodemo/gender')&.text
-    end
-
-    def biodemo_visibility
-      xml.at_xpath('//biodemo')&.[]('visibility')
-    end
-
-    # Addresses (multiple possible)
-    def addresses
-      xml.xpath('//address').map { |addr_node| build_address(addr_node) }
-    end
-
-    # Telephones (multiple possible)
-    def telephones
-      xml.xpath('//telephone').map { |tel_node| build_telephone(tel_node) }
-    end
-
     # Emails (multiple possible)
     def emails
       xml.xpath('//email').map do |email_node|
@@ -174,11 +152,6 @@ class MaisPersonClient
           loc_node.text
         )
       end
-    end
-
-    # Places (multiple possible - home, work, etc.)
-    def places
-      xml.xpath('//place').map { |place_node| build_place(place_node) }
     end
 
     # Affiliations (multiple possible)
@@ -251,20 +224,6 @@ class MaisPersonClient
 
     def eduperson_affiliations
       xml.xpath('//edupersonaffiliation').map(&:text)
-    end
-
-    # Emergency contacts
-    def emergency_contacts
-      xml.xpath('//emergency_contact').map { |contact_node| build_emergency_contact(contact_node) }
-    end
-
-    # Convenience methods for common lookups
-    def work_address
-      addresses.find { |addr| addr.type == 'work' }
-    end
-
-    def home_address
-      addresses.find { |addr| HOME_ADDRESS_TYPES.include?(addr.type) }
     end
 
     def work_phone
@@ -373,27 +332,6 @@ class MaisPersonClient
       )
     end
 
-    def build_emergency_contact_telephones(contact_node)
-      contact_node.xpath('contact_telephone').map do |tel_node|
-        Telephone.new(
-          tel_node['type'],
-          tel_node['visibility'],
-          tel_node.children.first&.text&.strip,
-          tel_node.at_xpath('icc')&.text,
-          tel_node.at_xpath('area')&.text,
-          tel_node.at_xpath('number')&.text,
-          nil
-        )
-      end
-    end
-
-    def build_emergency_contact_address(contact_node)
-      addr_node = contact_node.at_xpath('contact_address')
-      return nil unless addr_node
-
-      build_address(addr_node)
-    end
-
     def build_affiliation(aff_node)
       department = build_department(aff_node.at_xpath('department'))
       affdata = build_affdata_array(aff_node)
@@ -410,24 +348,6 @@ class MaisPersonClient
         aff_node.at_xpath('description')&.text,
         affdata,
         aff_places
-      )
-    end
-
-    def build_emergency_contact(contact_node)
-      contact_telephones = build_emergency_contact_telephones(contact_node)
-      contact_address = build_emergency_contact_address(contact_node)
-      rel_node = contact_node.at_xpath('contact_relationship')
-
-      EmergencyContact.new(
-        contact_node['number'],
-        contact_node['primary'] == 'true',
-        contact_node['sync_permanent'] == 'true',
-        contact_node['visibility'],
-        contact_node.at_xpath('contact_name')&.text,
-        rel_node&.text,
-        rel_node&.[]('code'),
-        contact_telephones,
-        contact_address
       )
     end
   end

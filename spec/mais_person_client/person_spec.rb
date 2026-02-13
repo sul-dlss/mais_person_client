@@ -149,100 +149,6 @@ RSpec.describe MaisPersonClient::Person do
     end
   end
 
-  describe 'biodemo' do
-    describe '#gender' do
-      it 'returns the gender' do
-        expect(person.gender).to eq('male')
-      end
-    end
-
-    describe '#biodemo_visibility' do
-      it 'returns the biodemo visibility' do
-        expect(person.biodemo_visibility).to eq('none')
-      end
-    end
-  end
-
-  describe 'addresses' do
-    it 'returns an array of Address structs' do
-      addresses = person.addresses
-      expect(addresses).to be_an(Array)
-      expect(addresses.length).to eq(5) # 2 top-level + addresses in places
-      expect(addresses.first).to be_a(MaisPersonClient::Person::Address)
-    end
-
-    it 'parses address attributes correctly' do
-      permanent_addr = person.addresses.find { |a| a.type == 'permanent' }
-      expect(permanent_addr.type).to eq('permanent')
-      expect(permanent_addr.visibility).to eq('private')
-      expect(permanent_addr.line).to eq('1313 Webfoot Walk')
-      expect(permanent_addr.city).to eq('Duckburg')
-      expect(permanent_addr.state).to eq('Calisota')
-      expect(permanent_addr.state_code).to eq('CA')
-      expect(permanent_addr.postal_code).to eq('12345')
-      expect(permanent_addr.country).to eq('Duckland')
-      expect(permanent_addr.country_alpha2).to eq('DU')
-      expect(permanent_addr.country_alpha3).to eq('DUC')
-      expect(permanent_addr.country_numeric).to eq('999')
-    end
-
-    it 'handles multiple address lines' do
-      work_addr = person.addresses.find { |a| a.type == 'work' }
-      expect(work_addr.line).to be_an(Array)
-      expect(work_addr.line).to eq(['1 Money Bin Plaza', 'Top of the Hill'])
-    end
-
-    describe '#work_address' do
-      it 'returns the work address' do
-        addr = person.work_address
-        expect(addr.type).to eq('work')
-        expect(addr.city).to eq('Duckburg')
-      end
-    end
-
-    describe '#home_address' do
-      it 'returns the permanent address as home address' do
-        addr = person.home_address
-        expect(addr.type).to eq('permanent')
-        expect(addr.city).to eq('Duckburg')
-      end
-    end
-  end
-
-  describe 'telephones' do
-    it 'returns an array of Telephone structs' do
-      phones = person.telephones
-      expect(phones).to be_an(Array)
-      expect(phones.length).to eq(5) # 2 top-level + phones in places
-      expect(phones.first).to be_a(MaisPersonClient::Person::Telephone)
-    end
-
-    it 'parses telephone attributes correctly' do
-      mobile = person.telephones.find { |t| t.type == 'mobile' }
-      expect(mobile.type).to eq('mobile')
-      expect(mobile.visibility).to eq('tooniverse')
-      expect(mobile.icc).to eq('1')
-      expect(mobile.area).to eq('555')
-      expect(mobile.number).to eq('123-0001')
-    end
-
-    describe '#work_phone' do
-      it 'returns the work phone' do
-        phone = person.work_phone
-        expect(phone.type).to eq('work')
-        expect(phone.area).to eq('555')
-      end
-    end
-
-    describe '#mobile_phone' do
-      it 'returns the mobile phone' do
-        phone = person.mobile_phone
-        expect(phone.type).to eq('mobile')
-        expect(phone.number).to eq('123-0001')
-      end
-    end
-  end
-
   describe 'emails' do
     it 'returns an array of Email structs' do
       emails = person.emails
@@ -302,25 +208,6 @@ RSpec.describe MaisPersonClient::Person do
       expect(location.type).to eq('idmail')
       expect(location.visibility).to eq('world')
       expect(location.location).to eq('MONEY BIN - TOP FLOOR')
-    end
-  end
-
-  describe 'places' do
-    it 'returns an array of Place structs' do
-      places = person.places
-      expect(places).to be_an(Array)
-      expect(places.length).to eq(3) # work, home, and office within affiliation
-      expect(places.first).to be_a(MaisPersonClient::Person::Place)
-    end
-
-    it 'parses place with addresses and telephones' do
-      work_place = person.places.find { |p| p.type == 'work' }
-      expect(work_place.type).to eq('work')
-      expect(work_place.qbfr).to eq('BIN-0001')
-      expect(work_place.address).to be_an(Array)
-      expect(work_place.address.first).to be_a(MaisPersonClient::Person::Address)
-      expect(work_place.telephone).to be_an(Array)
-      expect(work_place.telephone.first).to be_a(MaisPersonClient::Person::Telephone)
     end
   end
 
@@ -515,42 +402,6 @@ RSpec.describe MaisPersonClient::Person do
     end
   end
 
-  describe 'emergency contacts' do
-    it 'returns an array of EmergencyContact structs' do
-      contacts = person.emergency_contacts
-      expect(contacts).to be_an(Array)
-      expect(contacts.length).to eq(2)
-      expect(contacts.first).to be_a(MaisPersonClient::Person::EmergencyContact)
-    end
-
-    it 'parses emergency contact attributes correctly' do
-      primary_contact = person.emergency_contacts.find(&:primary)
-      expect(primary_contact.number).to eq('1')
-      expect(primary_contact.primary).to be true
-      expect(primary_contact.sync_permanent).to be false
-      expect(primary_contact.visibility).to eq('none')
-      expect(primary_contact.contact_name).to eq('Daisy Duck')
-      expect(primary_contact.contact_relationship).to eq('Girlfriend')
-      expect(primary_contact.contact_relationship_code).to eq('GF')
-
-      # Test contact telephones
-      expect(primary_contact.contact_telephones).to be_an(Array)
-      expect(primary_contact.contact_telephones.first).to be_a(MaisPersonClient::Person::Telephone)
-      expect(primary_contact.contact_telephones.first.number).to eq('123-1313')
-
-      # Test contact address
-      expect(primary_contact.contact_address).to be_a(MaisPersonClient::Person::Address)
-      expect(primary_contact.contact_address.city).to eq('Duckburg')
-    end
-
-    it 'handles multiple emergency contacts with multiple phones' do
-      uncle_contact = person.emergency_contacts.find { |c| c.contact_relationship == 'Uncle' }
-      expect(uncle_contact.contact_name).to eq('Scrooge McDuck')
-      expect(uncle_contact.contact_telephones.length).to eq(2)
-      expect(uncle_contact.contact_telephones.map(&:type)).to include('primary', 'mobile')
-    end
-  end
-
   describe 'struct definitions' do
     it 'defines all required struct classes' do
       expect(defined?(MaisPersonClient::Person::PersonName)).to be_truthy
@@ -564,7 +415,6 @@ RSpec.describe MaisPersonClient::Person do
       expect(defined?(MaisPersonClient::Person::Affiliation)).to be_truthy
       expect(defined?(MaisPersonClient::Person::AffData)).to be_truthy
       expect(defined?(MaisPersonClient::Person::Place)).to be_truthy
-      expect(defined?(MaisPersonClient::Person::EmergencyContact)).to be_truthy
     end
   end
 
@@ -584,10 +434,7 @@ RSpec.describe MaisPersonClient::Person do
         expect(minimal_person.regid).to eq('test123')
         expect(minimal_person.sunetid).to eq('testuser')
         expect(minimal_person.names.length).to eq(1)
-        expect(minimal_person.addresses).to be_empty
-        expect(minimal_person.telephones).to be_empty
         expect(minimal_person.emails).to be_empty
-        expect(minimal_person.emergency_contacts).to be_empty
       end
 
       it 'returns false for academic_council? when there are no affiliations' do

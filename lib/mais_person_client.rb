@@ -21,18 +21,13 @@ class MaisPersonClient
   ALLOWED_TAGS = %w[
     name
     title
-    biodemo
-    address
-    telephone
     email
     url
     location
-    place
     affiliation
     identifier
     privgroup
     profile
-    emergency
     visibility
   ].freeze
 
@@ -81,9 +76,9 @@ class MaisPersonClient
   private
 
   def build_tag_params(tags)
-    return nil unless tags
-
-    tags_array = if tags.is_a?(String)
+    tags_array = if tags.nil?
+                   ALLOWED_TAGS
+                 elsif tags.is_a?(String)
                    tags.split(',').map(&:strip)
                  else
                    Array(tags).map(&:to_s)

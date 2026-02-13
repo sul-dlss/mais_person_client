@@ -13,34 +13,6 @@
     <last nval="duck">Duck</last>
   </name>
   <title type="job" visibility="world">Chief Quack Officer</title>
-  <biodemo visibility="none">
-    <gender>male</gender>
-  </biodemo>
-  <address type="permanent" visibility="private">1313 Webfoot Walk, Duckburg, Calisota 12345
-    <line>1313 Webfoot Walk</line>
-    <city>Duckburg</city>
-    <state code="CA">Calisota</state>
-    <postalcode>12345</postalcode>
-    <country alpha2="DU" alpha3="DUC" numeric="999">Duckland</country>
-  </address>
-  <address type="work" visibility="world">1 Money Bin Plaza, Duckburg, Calisota 12345
-    <line>1 Money Bin Plaza</line>
-    <line>Top of the Hill</line>
-    <city>Duckburg</city>
-    <state code="CA">Calisota</state>
-    <postalcode>12345</postalcode>
-    <country alpha2="DU" alpha3="DUC" numeric="999">Duckland</country>
-  </address>
-  <telephone type="mobile" visibility="tooniverse">(555) 123-0001
-    <icc>1</icc>
-    <area>555</area>
-    <number>123-0001</number>
-  </telephone>
-  <telephone type="work" visibility="tooniverse">(555) 123-0002
-    <icc>1</icc>
-    <area>555</area>
-    <number>123-0002</number>
-  </telephone>
   <email type="primary" visibility="world">donald.duck@duckmail.com
     <user>donald.duck</user>
     <host>duckmail.com</host>
@@ -51,36 +23,6 @@
   </email>
   <url type="homepage" visibility="world">http://donalds-adventures.duck</url>
   <location code="1313" type="idmail" visibility="world">MONEY BIN - TOP FLOOR</location>
-  <place type="work">
-    <address type="work" visibility="world">1 Money Bin Plaza, Duckburg, Calisota 12345
-      <line>1 Money Bin Plaza</line>
-      <line>Top of the Hill</line>
-      <city>Duckburg</city>
-      <state code="CA">Calisota</state>
-      <postalcode>12345</postalcode>
-      <country alpha2="DU" alpha3="DUC" numeric="999">Duckland</country>
-    </address>
-    <qbfr>BIN-0001</qbfr>
-    <telephone type="work" visibility="tooniverse">(555) 123-0002
-      <icc>1</icc>
-      <area>555</area>
-      <number>123-0002</number>
-    </telephone>
-  </place>
-  <place type="home">
-    <address type="home" visibility="private">1313 Webfoot Walk, Duckburg, Calisota 12345
-      <line>1313 Webfoot Walk</line>
-      <city>Duckburg</city>
-      <state code="CA">Calisota</state>
-      <postalcode>12345</postalcode>
-      <country alpha2="DU" alpha3="DUC" numeric="999">Duckland</country>
-    </address>
-    <telephone type="home" visibility="private">(555) 123-0003
-      <icc>1</icc>
-      <area>555</area>
-      <number>123-0003</number>
-    </telephone>
-  </place>
   <affiliation affnum="1" effective="1934-06-09" organization="tooncorp" type="staff" visibility="world">Adventurer
     <department affnum="1">Duckburg Adventurers Club
       <organization adminid="DUCK" level2orgid="TOON" level2orgname="ToonTown International" regid="FAKE-ORG-0001">Duckburg Adventurers Club</organization>
@@ -118,41 +60,4 @@
   <edupersonprimaryaffiliation>adventurer</edupersonprimaryaffiliation>
   <edupersonaffiliation>member</edupersonaffiliation>
   <edupersonaffiliation>adventurer</edupersonaffiliation>
-  <emergency_contact number="1" primary="true" sync_permanent="false" visibility="none">
-    <contact_name>Daisy Duck</contact_name>
-    <contact_relationship code="GF">Girlfriend</contact_relationship>
-    <contact_telephone type="primary" visibility="none">(555) 123-1313
-      <icc>1</icc>
-      <area>555</area>
-      <number>123-1313</number>
-    </contact_telephone>
-    <contact_address type="primary" visibility="none">1313 Webfoot Walk, Duckburg, Calisota 12345
-      <line>1313 Webfoot Walk</line>
-      <city>Duckburg</city>
-      <state code="CA">Calisota</state>
-      <postalcode>12345</postalcode>
-      <country alpha2="DU" alpha3="DUC" numeric="999">Duckland</country>
-    </contact_address>
-  </emergency_contact>
-  <emergency_contact number="2" primary="false" sync_permanent="false" visibility="none">
-    <contact_name>Scrooge McDuck</contact_name>
-    <contact_relationship code="UNC">Uncle</contact_relationship>
-    <contact_telephone type="primary" visibility="none">(555) 123-0004
-      <icc>1</icc>
-      <area>555</area>
-      <number>123-0004</number>
-    </contact_telephone>
-    <contact_telephone type="mobile" visibility="none">(555) 123-0005
-      <icc>1</icc>
-      <area>555</area>
-      <number>123-0005</number>
-    </contact_telephone>
-    <contact_address type="primary" visibility="none">1 Money Bin Plaza, Duckburg, Calisota 12345
-      <line>1 Money Bin Plaza</line>
-      <city>Duckburg</city>
-      <state code="CA">Calisota</state>
-      <postalcode>12345</postalcode>
-      <country alpha2="DU" alpha3="DUC" numeric="999">Duckland</country>
-    </contact_address>
-  </emergency_contact>
 </Person>

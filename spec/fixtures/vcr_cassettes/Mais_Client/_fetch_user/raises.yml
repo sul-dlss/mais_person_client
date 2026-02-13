@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://registry-uat.stanford.edu/doc/person/totally-bogus
+    uri: https://registry-uat.stanford.edu/doc/person/totally-bogus?tags=name,title,email,url,location,affiliation,identifier,privgroup,profile,visibility
     body:
       encoding: US-ASCII
       string: ''
