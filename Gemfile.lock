@@ -58,7 +58,7 @@ GEM
     lint_roller (1.1.0)
     logger (1.7.0)
     method_source (1.1.0)
-    minitest (6.0.4)
+    minitest (6.0.5)
       drb (~> 2.0)
       prism (~> 1.5)
     net-http (0.9.1)
@@ -80,7 +80,7 @@ GEM
     nokogiri (1.19.2-x86_64-linux-musl)
       racc (~> 1.4)
     ostruct (0.6.3)
-    parallel (2.0.1)
+    parallel (2.1.0)
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
